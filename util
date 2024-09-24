@@ -1,0 +1,34 @@
+@echo off
+title DMGTool - by Stepper
+chcp 65001 >nul
+cd Files
+color 5
+:start
+call :banner
+
+:menu
+for /f %%A in ('"prompt $H echo on &for %%B in (1) do rem"') do set BS=%%A 
+echo      1) Device Cleanup
+echo      2) Disable USB PowerSavings
+echo      3) Disable Driver PowerSavings
+echo      4) GPU Full Power
+set /p input=.%BS%
+if /I %input% EQU 1 start devicecleanup.exe
+if /I %input% EQU 2 start pwrsvg.bat 
+if /I %input% EQU 3 start drvrpwr.bat 
+if /I %input% EQU 4 start gpufull.bat 
+cls
+goto start
+
+:banner
+echo.
+echo.
+echo          ███████╗████████╗███████╗██████╗ ██████╗ ███████╗██████╗ ████████╗██╗    ██╗███████╗ █████╗ ██╗  ██╗███████╗
+echo          ██╔════╝╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝██║    ██║██╔════╝██╔══██╗██║ ██╔╝██╔════╝
+echo          ███████╗   ██║   █████╗  ██████╔╝██████╔╝█████╗  ██████╔╝   ██║   ██║ █╗ ██║█████╗  ███████║█████╔╝ ███████╗
+echo          ╚════██║   ██║   ██╔══╝  ██╔═══╝ ██╔═══╝ ██╔══╝  ██╔══██╗   ██║   ██║███╗██║██╔══╝  ██╔══██║██╔═██╗ ╚════██║
+echo          ███████║   ██║   ███████╗██║     ██║     ███████╗██║  ██║   ██║   ╚███╔███╔╝███████╗██║  ██║██║  ██╗███████║
+echo          ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+echo.
+echo.
+pause
